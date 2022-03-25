@@ -1,12 +1,13 @@
 package com.lut.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lut.pojo.Data;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
-public interface DataDao {
+public interface DataDao extends BaseMapper<Data> {
     @Results(id="dataMap",value = {
             @Result(column = "id",property = "id"),
             @Result(column = "type",property = "type"),
@@ -16,4 +17,5 @@ public interface DataDao {
     })
     @Select("select * from data")
     public List<Data> selectAll();
+    
 }

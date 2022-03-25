@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class File {
     @TableId("id")
-    private Integer id;
+    private String id;
     @TableField("name")
     private String name;
     @TableField("url")

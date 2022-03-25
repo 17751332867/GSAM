@@ -3,20 +3,19 @@ package com.lut.pojo;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
-import java.util.List;
-
-@lombok.Data
-@TableName("data")
-public class Data {
+@TableName("indexing")
+@Data
+public class Indexing {
     @TableId("id")
     private Integer id;
-    @TableField("type")
-    private String type;
-    @TableField("size")
-    private Long size;
+    @TableField("command")
+    private String command;
+    @TableField("file_id")
+    private String fileId;
+    @TableField("name")
+    private String name;
     @TableField("description")
     private String description;
-    @TableField(exist = false)
-    private List<File> fileList;
 }

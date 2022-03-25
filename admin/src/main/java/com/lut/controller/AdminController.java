@@ -17,4 +17,5 @@ public class AdminController {
     public ResultData<Admin> login(String username,String password){
         return adminService.Login(username,password);
     }
+
 }

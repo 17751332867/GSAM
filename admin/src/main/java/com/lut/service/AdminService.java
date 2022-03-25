@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdminService {
+
     @Autowired
     private AdminDao adminDao;
+
 
     public ResultData<Admin> Login(String username,String password){
         QueryWrapper<Admin> params = new QueryWrapper<>();

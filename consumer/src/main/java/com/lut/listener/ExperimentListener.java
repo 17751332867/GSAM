@@ -1,6 +1,6 @@
-package com.lut.consumer.listener;
+package com.lut.listener;
 
-import com.lut.consumer.util.ProcessUtil;
+import com.lut.util.ProcessUtil;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
