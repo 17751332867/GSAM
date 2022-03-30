@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @lombok.Data
@@ -17,6 +18,8 @@ public class Data {
     private Long size;
     @TableField("description")
     private String description;
+    @TableField("file_id")
+    private String fileId;
     @TableField(exist = false)
-    private List<File> fileList;
+    private List<File> fileList=new ArrayList<>();
 }

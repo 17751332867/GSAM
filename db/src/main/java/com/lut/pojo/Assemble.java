@@ -1,5 +1,6 @@
 package com.lut.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -8,7 +9,7 @@ import lombok.Data;
 @Data
 @TableName("assemble")
 public class Assemble {
-    @TableId("id")
+    @TableId(value = "id")
     private Integer id;
     @TableField("command")
     private String command;

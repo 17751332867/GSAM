@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lut.config.ServerConfig;
 import com.lut.dao.DataDao;
 import com.lut.dao.FileDao;
-import com.lut.feign.SendFileMessageController;
 import com.lut.pojo.Data;
 import com.lut.pojo.dto.FileDto;
 import com.lut.pojo.dto.ResultData;
@@ -28,8 +27,6 @@ public class DataService {
     @Autowired
     private ServerConfig serverConfig;
 
-    @Autowired
-    SendFileMessageController sendFileMessageController;
 
     public List<Data> getAllData(){
         return dataDao.selectAll();
@@ -53,14 +50,15 @@ public class DataService {
             return "failed";
         }
 
+        String fileId = UUID.randomUUID().toString();
 
         Data data = dataDao.selectById(id);
         data.setSize(file.getSize());
+        data.setFileId(fileId);
         dataDao.updateById(data);
 
         com.lut.pojo.File saveFile = new com.lut.pojo.File();
-        String fileId = UUID.randomUUID().toString();
-        saveFile.setDataId(id);
+
         saveFile.setUrl(path);
         saveFile.setName(file.getOriginalFilename());
         saveFile.setId(fileId);
@@ -71,7 +69,6 @@ public class DataService {
         fileDto.setUrl(serverConfig.getUrl());
         fileDto.setPath(path);
         fileDto.setFileId(fileId);
-        sendFileMessageController.sendFileMessage(fileDto);
         return "success";
     }
 }

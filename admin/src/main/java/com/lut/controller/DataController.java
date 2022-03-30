@@ -1,7 +1,5 @@
 package com.lut.controller;
 
-import com.lut.config.ServerConfig;
-import com.lut.feign.SendFileMessageController;
 import com.lut.pojo.Data;
 import com.lut.pojo.dto.FileDto;
 import com.lut.pojo.dto.ResultData;

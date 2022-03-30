@@ -12,6 +12,4 @@ public class File {
     private String name;
     @TableField("url")
     private String url;
-    @TableField("data_id")
-    private Integer dataId;
 }

@@ -1,6 +1,6 @@
-package com.lut.producter.controller;
+package com.lut.controller;
 
-import com.lut.producter.config.RabbitConfig;
+import com.lut.config.RabbitConfig;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -13,9 +13,9 @@ public interface DataDao extends BaseMapper<Data> {
             @Result(column = "type",property = "type"),
             @Result(column = "size",property = "size"),
             @Result(column = "description",property = "description"),
-            @Result(column = "id",property = "fileList",javaType = List.class,many = @Many(select = "com.lut.dao.FileDao.selectFileByDataId"))
+            @Result(column = "file_id",property = "fileList",javaType = List.class,many = @Many(select = "com.lut.dao.FileDao.selectFilesById"))
     })
     @Select("select * from data")
     public List<Data> selectAll();
-    
+
 }
