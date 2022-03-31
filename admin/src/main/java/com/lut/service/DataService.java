@@ -35,7 +35,6 @@ public class DataService {
     public String upload(Integer id, MultipartFile file) {
         String BASE_DIR = System.getProperty("user.dir");
         String SEPARATOR = System.getProperty("file.separator");
-        String DATA_DIR = BASE_DIR+SEPARATOR+"img"+SEPARATOR+"data";
         String path = SEPARATOR+"img"+SEPARATOR+"data"+SEPARATOR+ UUID.randomUUID()+file.getOriginalFilename();
         String destPath = BASE_DIR+path;
         File dest = new File(destPath);
