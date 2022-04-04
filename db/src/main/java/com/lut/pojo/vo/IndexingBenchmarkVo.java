@@ -12,4 +12,5 @@ public class IndexingBenchmarkVo {
     private String faFile;
     private String gfaFile;
     private List<Integer> algorithms;
+    private String indexingBenchmarkId;
 }

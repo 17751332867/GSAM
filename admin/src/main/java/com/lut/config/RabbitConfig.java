@@ -13,9 +13,9 @@ public class RabbitConfig {
     public static String EXPERIMENT_QUEUE = "experiment_queue";
     public static String EXPERIMENT_EXCHANGE = "experiment_exchange";
     public static String EXPERIMENT_ROUTING_KEY = "experiment_routing_key";
-    public static String FILE_QUEUE = "file_queue";
-    public static String FILE_EXCHANGE = "file_exchange";
-    public static String FILE_ROUTING_KEY = "file_routing_key";
+    public static String INDEXING_BENCHMARK_QUEUE = "indexing_benchmark_queue";
+    public static String INDEXING_BENCHMARK_EXCHANGE = "indexing_benchmark_exchange";
+    public static String INDEXING_BENCHMARK_ROUTING_KEY = "indexing_benchmark_routing_key";
     @Bean("experimentQueue")
     public Queue experimentQueue(){
         return new Queue(EXPERIMENT_QUEUE,true);
@@ -28,16 +28,16 @@ public class RabbitConfig {
     public Binding experimentBinding(@Autowired Queue experimentQueue,@Autowired DirectExchange experimentExchange){
         return BindingBuilder.bind(experimentQueue).to(experimentExchange).with(EXPERIMENT_ROUTING_KEY);
     }
-    @Bean("fileQueue")
-    public Queue fileQueue(){
-        return new Queue(FILE_QUEUE,true);
+    @Bean("indexingBenchmarkQueue")
+    public Queue indexingBenchmarkQueue(){
+        return new Queue(INDEXING_BENCHMARK_QUEUE,true);
     }
-    @Bean("fileExchange")
-    public DirectExchange fileExchange(){
-        return new DirectExchange(FILE_EXCHANGE,true,false);
+    @Bean("indexingBenchmarkExchange")
+    public DirectExchange indexingBenchmarkExchange(){
+        return new DirectExchange(INDEXING_BENCHMARK_EXCHANGE,true,false);
     }
-    @Bean("fileBinding")
-    public Binding fileBinding(@Autowired Queue fileQueue,@Autowired DirectExchange fileExchange){
-        return BindingBuilder.bind(fileQueue).to(fileExchange).with(FILE_ROUTING_KEY);
+    @Bean("indexingBenchmarkBinding")
+    public Binding indexingBenchmarkBinding(@Autowired Queue indexingBenchmarkQueue,@Autowired DirectExchange indexingBenchmarkExchange){
+        return BindingBuilder.bind(indexingBenchmarkQueue).to(indexingBenchmarkExchange).with(INDEXING_BENCHMARK_ROUTING_KEY);
     }
 }

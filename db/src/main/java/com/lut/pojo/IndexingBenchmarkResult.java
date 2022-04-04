@@ -16,7 +16,7 @@ public class IndexingBenchmarkResult {
     @TableField("name")
     private String name;
     @TableField("realTime")
-    private double realTime;
+    private Double realTime;
     @TableField("cpu")
     private String cpu;
     @TableField("indexing_benchmark_id")

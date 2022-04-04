@@ -40,6 +40,7 @@ public class BenchmarkService {
         UserIndexingBenchmark userIndexingBenchmark = new UserIndexingBenchmark();
         userIndexingBenchmark.setIndexingBenchmarkId(indexingBenchmarkid);
         userIndexingBenchmark.setUserId(benchmarkVo.getUserId());
+        benchmarkVo.setIndexingBenchmarkId(indexingBenchmarkid);
         userIndexingBenchmarkDao.insert(userIndexingBenchmark);
         indexingBenchmarkDao.insert(indexingBenchmark);
         sendExperimentMessageMQ.sendIndexingBenchmarkMessage(JSON.toJSONString(benchmarkVo));
