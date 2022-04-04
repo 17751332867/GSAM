@@ -1,12 +1,8 @@
 package com.lut;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.lut.dao.AssembleDao;
-import com.lut.dao.DataDao;
-import com.lut.dao.FileDataDao;
-import com.lut.dao.IndexingExperimentDao;
-import com.lut.pojo.Assemble;
+import com.lut.dao.*;
 import com.lut.pojo.IndexingExperiment;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,10 +17,14 @@ class TestApplicationTests {
 
     @Autowired
     IndexingExperimentDao indexingExperimentDao;
+
+    @Autowired
+    UserIndexingExperimentDao userIndexingExperimentDao;
+
+    @SneakyThrows
     @Test
     void contextLoads() {
-        List<IndexingExperiment> indexingExperiments = indexingExperimentDao.selectAll();
-        System.out.println(indexingExperiments);
+        List<IndexingExperiment> experiments = indexingExperimentDao.selectIndexingExperimentByUserId(1);
+        System.out.println(experiments);
     }
-
 }

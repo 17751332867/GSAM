@@ -1,11 +1,10 @@
 package com.lut.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lut.config.ServerConfig;
 import com.lut.dao.FileDao;
 import com.lut.dao.IndexingDao;
 import com.lut.pojo.Indexing;
-import com.lut.pojo.dto.FileDto;
+import com.lut.pojo.vo.FileDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,6 +42,9 @@ public class IndexingService {
                 parentFile.mkdirs();
             }
             file.transferTo(dest);
+            dest.setExecutable(true);
+            dest.setReadable(true);
+            dest.setWritable(true);
         } catch (IOException e) {
             e.printStackTrace();
             return "failed";

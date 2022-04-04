@@ -1,4 +1,4 @@
-package com.lut.pojo.dto;
+package com.lut.pojo.vo;
 
 import lombok.Data;
 

@@ -2,7 +2,6 @@ package com.lut.service;
 
 import com.lut.dao.FileDao;
 import com.lut.pojo.File;
-import com.lut.pojo.dto.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;

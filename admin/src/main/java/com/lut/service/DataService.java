@@ -1,12 +1,10 @@
 package com.lut.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lut.config.ServerConfig;
 import com.lut.dao.DataDao;
 import com.lut.dao.FileDao;
 import com.lut.pojo.Data;
-import com.lut.pojo.dto.FileDto;
-import com.lut.pojo.dto.ResultData;
+import com.lut.pojo.vo.FileDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

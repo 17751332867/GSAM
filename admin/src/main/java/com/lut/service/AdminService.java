@@ -3,7 +3,7 @@ package com.lut.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lut.dao.AdminDao;
 import com.lut.pojo.Admin;
-import com.lut.pojo.dto.ResultData;
+import com.lut.pojo.vo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

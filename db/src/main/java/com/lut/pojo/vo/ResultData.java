@@ -1,9 +1,8 @@
-package com.lut.pojo.dto;
+package com.lut.pojo.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.ibatis.javassist.compiler.ast.NewExpr;
 
 @Data
 @AllArgsConstructor

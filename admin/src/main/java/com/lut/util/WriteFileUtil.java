@@ -2,15 +2,12 @@ package com.lut.util;
 
 import com.lut.dao.FileDataDao;
 import com.lut.pojo.FileData;
-import com.lut.pojo.dto.FileDto;
+import com.lut.pojo.vo.FileDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
 
 @Component
 public class WriteFileUtil {

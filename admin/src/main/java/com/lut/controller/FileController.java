@@ -1,8 +1,7 @@
 package com.lut.controller;
 
-import com.baomidou.mybatisplus.extension.api.R;
 import com.lut.pojo.File;
-import com.lut.pojo.dto.ResultData;
+import com.lut.pojo.vo.ResultData;
 import com.lut.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

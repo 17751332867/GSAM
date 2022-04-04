@@ -1,19 +1,14 @@
 package com.lut.controller;
 
 import com.lut.pojo.Data;
-import com.lut.pojo.dto.FileDto;
-import com.lut.pojo.dto.ResultData;
+import com.lut.pojo.vo.ResultData;
 import com.lut.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("data")
