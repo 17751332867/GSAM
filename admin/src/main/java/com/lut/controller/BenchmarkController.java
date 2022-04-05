@@ -17,8 +17,10 @@ public class BenchmarkController {
 
     @RequestMapping("doBanchmark")
     public ResultData<String> doBanchmark(@RequestBody IndexingBenchmarkVo benchmarkVo){
-        benchmarkService.doBanchmark(benchmarkVo);
-        return new ResultData<String>().success("success");
+        String s = benchmarkService.doBanchmark(benchmarkVo);
+        if(s.equals("success"))
+            return new ResultData<String>().success("success");
+        return new ResultData<String>().error("error");
     }
 
 }

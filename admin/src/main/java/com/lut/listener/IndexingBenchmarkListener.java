@@ -2,10 +2,12 @@ package com.lut.listener;
 
 import com.alibaba.fastjson.JSON;
 import com.lut.dao.FileDao;
+import com.lut.dao.IndexingBenchmarkDao;
 import com.lut.dao.IndexingBenchmarkResultDao;
 import com.lut.dao.IndexingDao;
 import com.lut.pojo.File;
 import com.lut.pojo.Indexing;
+import com.lut.pojo.IndexingBenchmark;
 import com.lut.pojo.IndexingBenchmarkResult;
 import com.lut.pojo.vo.IndexingBenchmarkVo;
 import com.lut.pojo.vo.MemoryInfo;
@@ -28,17 +30,24 @@ public class IndexingBenchmarkListener {
     FileDao fileDao;
     @Autowired
     IndexingBenchmarkResultDao indexingBenchmarkResultDao;
+    @Autowired
+    IndexingBenchmarkDao indexingBenchmarkDao;
     @RabbitHandler
     public void doExperiment(String msg){
         IndexingBenchmarkVo indexingBenchmarkVo = JSON.parseObject(msg, IndexingBenchmarkVo.class);
         File fa = fileDao.selectById(indexingBenchmarkVo.getFaFile());
         File gfa = fileDao.selectById(indexingBenchmarkVo.getGfaFile());
         String benchmarkId = indexingBenchmarkVo.getIndexingBenchmarkId();
+        IndexingBenchmark indexingBenchmark = indexingBenchmarkDao.selectById(benchmarkId);
+        indexingBenchmark.setStatus("运行中");
+        indexingBenchmarkDao.updateById(indexingBenchmark);
         for (Integer algorithm : indexingBenchmarkVo.getAlgorithms()) {
             Indexing indexing = indexingDao.selectById(algorithm);
             experimentAndSave(indexing,gfa,fa,indexingBenchmarkVo.getIndexingBenchmarkId());
         }
         System.out.println(indexingBenchmarkVo);
+        indexingBenchmark.setStatus("完成");
+        indexingBenchmarkDao.updateById(indexingBenchmark);
     }
     public void experimentAndSave(Indexing indexing, File gfa,File fa,String indexingBenchmarkId){
         String cmd = indexing.getCommand();

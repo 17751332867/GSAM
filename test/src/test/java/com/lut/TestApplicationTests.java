@@ -1,6 +1,7 @@
 package com.lut;
 
 import com.lut.dao.*;
+import com.lut.pojo.IndexingBenchmark;
 import com.lut.pojo.IndexingExperiment;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
@@ -13,18 +14,11 @@ import java.util.List;
 class TestApplicationTests {
 
     @Autowired
-    AssembleDao assembleDao;
-
-    @Autowired
-    IndexingExperimentDao indexingExperimentDao;
-
-    @Autowired
-    UserIndexingExperimentDao userIndexingExperimentDao;
+    IndexingBenchmarkDao indexingBenchmarkDao;
 
     @SneakyThrows
     @Test
     void contextLoads() {
-        List<IndexingExperiment> experiments = indexingExperimentDao.selectIndexingExperimentByUserId(1);
-        System.out.println(experiments);
+        List<IndexingBenchmark> benchmarks = indexingBenchmarkDao.selectBenchmarkByUserId(1);
     }
 }

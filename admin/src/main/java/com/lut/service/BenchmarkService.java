@@ -27,7 +27,7 @@ public class BenchmarkService {
 
     @Autowired
     SendExperimentMessageMQ sendExperimentMessageMQ;
-    public void doBanchmark(IndexingBenchmarkVo benchmarkVo) {
+    public String doBanchmark(IndexingBenchmarkVo benchmarkVo) {
         IndexingBenchmark indexingBenchmark = new IndexingBenchmark();
         indexingBenchmark.setDescription(benchmarkVo.getDescription());
         indexingBenchmark.setCreateDate(new Date(System.currentTimeMillis()+3600*1000*8));
@@ -44,5 +44,6 @@ public class BenchmarkService {
         userIndexingBenchmarkDao.insert(userIndexingBenchmark);
         indexingBenchmarkDao.insert(indexingBenchmark);
         sendExperimentMessageMQ.sendIndexingBenchmarkMessage(JSON.toJSONString(benchmarkVo));
+        return "success";
     }
 }
