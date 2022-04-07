@@ -12,7 +12,7 @@ public class UserIndexingBenchmark {
 
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
-    @TableField("userId")
+    @TableField("user_info_id")
     private Integer userId;
     @TableField("indexing_benchmark_id")
     private String indexingBenchmarkId;

@@ -1,6 +1,7 @@
 package com.lut.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lut.pojo.File;
 import com.lut.pojo.IndexingBenchmark;
 import com.lut.pojo.IndexingBenchmarkResult;
 import org.apache.ibatis.annotations.*;
@@ -17,9 +18,11 @@ public interface IndexingBenchmarkResultDao extends BaseMapper<IndexingBenchmark
             @Result(column = "cpu",property = "cpu"),
             @Result(column = "indexing_benchmark_id",property = "indexingBenchmarkId"),
             @Result(column = "res_file_id",property = "resFileId"),
-            @Result(column = "res_file_id",property = "resFile",javaType = List.class,one = @One(select = "com.lut.dao.FileDao.selectFilesById"))
+            @Result(column = "res_file_id",property = "resFile",javaType = File.class,one = @One(select = "com.lut.dao.FileDao.selectFilesById"))
     })
     @Select("select * from indexing_benchmark_result where indexing_benchmark_id = #{id}")
     public List<IndexingBenchmarkResult> selectByIndexingBenchmarkId(String id);
 
+    @Select("select name from indexing_benchmark_result where indexing_benchmark_id = #{id}")
+    public List<String> selectNameByBenchmarkId(String id);
 }
