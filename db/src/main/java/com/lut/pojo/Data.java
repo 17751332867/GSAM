@@ -1,5 +1,6 @@
 package com.lut.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -10,7 +11,7 @@ import java.util.List;
 @lombok.Data
 @TableName("data")
 public class Data {
-    @TableId("id")
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
     @TableField("type")
     private String type;
@@ -20,6 +21,8 @@ public class Data {
     private String description;
     @TableField("file_id")
     private String fileId;
+    @TableField("name")
+    private String name;
     @TableField(exist = false)
-    private List<File> fileList=new ArrayList<>();
+    private File fileList;
 }

@@ -28,4 +28,12 @@ public class FileController {
     public ResultData<String> doExperiment(){
         return new ResultData<String>().success("success");
     }
+
+    @RequestMapping("selectById")
+    public ResultData<File> selectById(String id){
+        System.out.println(id);
+        File file = fileService.selectById(id);
+        System.out.println(file);
+        return new ResultData<File>().success(file);
+    }
 }

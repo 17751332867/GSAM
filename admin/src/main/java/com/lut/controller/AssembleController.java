@@ -1,6 +1,5 @@
 package com.lut.controller;
 
-import com.lut.pojo.Assemble;
 import com.lut.pojo.vo.ResultData;
 import com.lut.service.AssembleService;
 import org.springframework.beans.factory.annotation.Autowired;

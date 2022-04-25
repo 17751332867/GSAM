@@ -37,7 +37,7 @@ public class ExperimentListener {
         String BASE_DIR = System.getProperty("user.dir");
         File faFile = fileDao.selectById(indexingExperiment.getFaFileId());
         File gfaFile = fileDao.selectById(indexingExperiment.getGfaFileId());
-        Indexing indexing = indexingDao.selectById(indexingExperiment.getIndexingId());
+        Indexing indexing = indexingDao.getById(indexingExperiment.getIndexingId());
         String cmd = indexing.getCommand();
         File resFile = new File();
         String resName = "res"+ UUID.randomUUID().toString();

@@ -1,26 +1,27 @@
 package com.lut;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.lut.config.ServerConfig;
-import com.lut.dao.AdminDao;
-
+import com.alibaba.druid.pool.DruidDataSource;
+import com.lut.dao.IndexingDao;
+import com.lut.dao.PangenomeFileDao;
+import com.lut.pojo.PangenomeFile;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.sql.DataSource;
+import java.util.List;
+
 @SpringBootTest
-class AdminApplicationTests {
-    @Autowired
-    private AdminDao adminDao;
+public class AdminApplicationTests {
 
     @Autowired
-    ServerConfig serverConfig;
-    @Value("${server.port}")
-    private String serverPort;
+    PangenomeFileDao pangenomeFileDao;
+
+    @SneakyThrows
     @Test
     void contextLoads() {
-        System.out.println(serverConfig.getUrl());
+        List<PangenomeFile> files = pangenomeFileDao.selectByUserId(1);
+        System.out.println(files);
     }
-
 }

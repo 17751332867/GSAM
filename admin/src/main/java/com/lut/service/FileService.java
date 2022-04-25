@@ -42,4 +42,8 @@ public class FileService {
         fileDao.insert(saveFile);
         return saveFile;
     }
+
+    public File selectById(String id) {
+        return fileDao.selectById(id);
+    }
 }

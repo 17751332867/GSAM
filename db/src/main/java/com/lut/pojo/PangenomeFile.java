@@ -1,5 +1,6 @@
 package com.lut.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -8,7 +9,7 @@ import lombok.Data;
 @Data
 @TableName("pangenome_file")
 public class PangenomeFile {
-    @TableId("id")
+    @TableId(value = "id",type = IdType.ASSIGN_ID)
     private String id;
     @TableField("name")
     private String name;
@@ -20,6 +21,8 @@ public class PangenomeFile {
     private String resUrl;
     @TableField("num")
     private Integer num;
+    @TableField("input_url")
+    private String inputUrl;
     @TableField("size")
     private Integer size;
     @TableField("max_length_lower_bound")

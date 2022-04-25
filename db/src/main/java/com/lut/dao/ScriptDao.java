@@ -1,10 +1,10 @@
 package com.lut.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lut.pojo.FileData;
+import com.lut.pojo.Script;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface FileDataDao extends BaseMapper<FileData> {
+public interface ScriptDao extends BaseMapper<Script> {
 
 }

@@ -1,6 +1,7 @@
 package com.lut.service;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lut.MQ.SendExperimentMessageMQ;
 import com.lut.dao.FileDao;
 import com.lut.dao.IndexingBenchmarkDao;
@@ -86,5 +87,26 @@ public class IndexBenchmarkService {
         indexingBenchMarkChartData.setRealTime(realTimes);
         indexingBenchMarkChartData.setName(names);
         return indexingBenchMarkChartData;
+    }
+
+    public List<IndexingBenchmark> selectAll() {
+        List<IndexingBenchmark> benchmarkList = indexingBenchmarkDao.selectList(new QueryWrapper<>());
+        return benchmarkList;
+    }
+
+    public List<IndexingBenchmarkResult> selectBenchmarkResultByBenchmarkId(String id) {
+        IndexingBenchmarkResult indexingBenchmarkResult = new IndexingBenchmarkResult();
+        indexingBenchmarkResult.setIndexingBenchmarkId(id);
+        return indexingBenchmarkResultDao.selectList(new QueryWrapper<>(indexingBenchmarkResult));
+    }
+
+    public List<IndexingBenchmark> deleteById(String id) {
+        int res = indexingBenchmarkDao.deleteById(id);
+        return indexingBenchmarkDao.selectList(new QueryWrapper<>());
+    }
+
+    public List<IndexingBenchmark> updateById(IndexingBenchmark indexingBenchmark) {
+        int i = indexingBenchmarkDao.updateById(indexingBenchmark);
+        return indexingBenchmarkDao.selectList(new QueryWrapper<>());
     }
 }

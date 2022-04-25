@@ -18,10 +18,14 @@ public class MyPicConfig implements WebMvcConfigurer {
         String INDEXING_DIR = BASE_DIR+SEPARATOR+"img"+SEPARATOR+"indexing";
         String FILE_DIR = BASE_DIR+SEPARATOR+"img"+SEPARATOR+"file";
         String RES_DIR = BASE_DIR+SEPARATOR+"img"+SEPARATOR+"res";
+        String PANGENOME_DIR = BASE_DIR+SEPARATOR+"img"+SEPARATOR+"pangenome";
         ensureFileExists(RES_DIR);
         ensureFileExists(DATA_DIR);
         ensureFileExists(INDEXING_DIR);
         ensureFileExists(FILE_DIR);
+        ensureFileExists(PANGENOME_DIR);
+        registry.addResourceHandler("/img/pangenome/**")
+                .addResourceLocations("file:"+PANGENOME_DIR+SEPARATOR);
         registry.addResourceHandler("/img/data/**")
                 .addResourceLocations("file:" + DATA_DIR+SEPARATOR);
         registry.addResourceHandler("/img/indexing/**")

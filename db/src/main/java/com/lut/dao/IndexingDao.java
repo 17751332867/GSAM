@@ -14,11 +14,11 @@ public interface IndexingDao extends BaseMapper<Indexing> {
             @Result(column = "name",property = "name"),
             @Result(column = "description",property = "description"),
             @Result(column = "file_id",property = "fileId"),
-            @Result(column = "file_id",property = "fileList",javaType = List.class,many = @Many(select = "com.lut.dao.FileDao.selectFilesById"))
+            @Result(column = "file_id",property = "fileList",javaType = List.class,many = @Many(select = "com.lut.dao.FileDao.selectFileListById"))
     })
     @Select("select * from indexing")
     List<Indexing> selectAll();
     @ResultMap(value = "indexingMap")
     @Select("select * from indexing where id = #{id}")
-    List<Indexing> selectById(Indexing id);
+    Indexing getById(Integer id);
 }

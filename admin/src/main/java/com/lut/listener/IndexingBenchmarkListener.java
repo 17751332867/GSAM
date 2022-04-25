@@ -42,7 +42,8 @@ public class IndexingBenchmarkListener {
         indexingBenchmark.setStatus("运行中");
         indexingBenchmarkDao.updateById(indexingBenchmark);
         for (Integer algorithm : indexingBenchmarkVo.getAlgorithms()) {
-            Indexing indexing = indexingDao.selectById(algorithm);
+            Indexing indexing = indexingDao.getById(algorithm);
+//            System.out.println(indexing);
             experimentAndSave(indexing,gfa,fa,indexingBenchmarkVo.getIndexingBenchmarkId());
         }
         System.out.println(indexingBenchmarkVo);
@@ -63,9 +64,12 @@ public class IndexingBenchmarkListener {
         cmd = cmd.replace("${gfa}",BASE_DIR+gfa.getUrl());
         cmd = cmd.replace("${fa}",BASE_DIR+fa.getUrl());
         cmd = cmd.replace("${gaf}",BASE_DIR+resFile.getUrl());
+//        System.out.println(indexing);
         cmd = cmd.replace(indexing.getName(),BASE_DIR+indexing.getFileList().get(0).getUrl());
         cmd = "/usr/bin/time -f '{\"realTime\":\"%e\",\"memory\":%M,\"cpu\":\"%P\"}' "+cmd;
+//        System.out.println(cmd);
         MemoryInfo memoryInfo = ProcessUtil.doProcess(cmd);
+//        System.out.println("aaa"+memoryInfo);
 //        System.out.println(cmd);
         IndexingBenchmarkResult indexingBenchmarkResult = new IndexingBenchmarkResult();
         indexingBenchmarkResult.setIndexingBenchmarkId(indexingBenchmarkId);

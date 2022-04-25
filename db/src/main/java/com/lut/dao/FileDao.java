@@ -12,5 +12,7 @@ import java.util.List;
 @Mapper
 public interface FileDao extends BaseMapper<File> {
     @Select("select * from file where id = #{id}")
-    public List<File> selectFilesById(String id);
+    public File selectFilesById(String id);
+    @Select("select * from file where id = #{id}")
+    public List<File> selectFileListById(String id);
 }

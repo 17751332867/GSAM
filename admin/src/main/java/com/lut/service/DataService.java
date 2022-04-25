@@ -4,6 +4,7 @@ import com.lut.config.ServerConfig;
 import com.lut.dao.DataDao;
 import com.lut.dao.FileDao;
 import com.lut.pojo.Data;
+import com.lut.pojo.vo.DataVo;
 import com.lut.pojo.vo.FileDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,5 +68,24 @@ public class DataService {
         fileDto.setPath(path);
         fileDto.setFileId(fileId);
         return "success";
+    }
+
+    public List<Data> insert(DataVo dataVo) {
+        Data data = new Data();
+        data.setName(dataVo.getName());
+        data.setDescription(dataVo.getDescription());
+        data.setType(dataVo.getType());
+        dataDao.insert(data);
+        return dataDao.selectAll();
+    }
+
+    public List<Data> update(Data data) {
+        int id = dataDao.updateById(data);
+        return dataDao.selectAll();
+    }
+
+    public List<Data> delete(Integer id) {
+        int i = dataDao.deleteById(id);
+        return dataDao.selectAll();
     }
 }
