@@ -22,4 +22,19 @@ public class SendExperimentMessageMQ {
         rabbitTemplate.convertAndSend(RabbitConfig.INDEXING_BENCHMARK_EXCHANGE,RabbitConfig.INDEXING_BENCHMARK_ROUTING_KEY,msg);
         return "ok";
     }
+
+    public String sendInsertVisualization(String msg){
+        rabbitTemplate.convertAndSend(RabbitConfig.VISUALIZATION_EXCHANGE,RabbitConfig.VISUALIZATION_ROUTING_KEY,msg);
+        return "ok";
+    }
+
+    public String sendInsertRequest(String msg){
+        rabbitTemplate.convertAndSend(RabbitConfig.REQUEST_EXCHANGE,RabbitConfig.REQUEST_ROUTING_KEY,msg);
+        return "ok";
+    }
+
+    public String sendProductRequest(String msg){
+        rabbitTemplate.convertAndSend(RabbitConfig.PRODUCT_EXCHANGE,RabbitConfig.PRODUCT_ROUTING_KEY,msg);
+        return "ok";
+    }
 }

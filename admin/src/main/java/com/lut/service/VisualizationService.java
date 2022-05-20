@@ -1,8 +1,15 @@
 package com.lut.service;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.lut.MQ.SendExperimentMessageMQ;
 import com.lut.dao.FileDao;
+import com.lut.dao.VisualizationDao;
+import com.lut.dao.VisualizationImgDao;
+import com.lut.pojo.Visualization;
+import com.lut.pojo.VisualizationImg;
 import com.lut.pojo.vo.MemoryInfo;
+import com.lut.pojo.vo.VisualizationSaveVo;
 import com.lut.util.ProcessUtil;
 import com.lut.websocket.MessageWebSocket;
 import lombok.SneakyThrows;
@@ -25,6 +32,13 @@ public class VisualizationService {
     private MessageWebSocket messageWebSocket;
     @Autowired
     private ProcessUtil processUtil;
+    @Autowired
+    private SendExperimentMessageMQ sendExperimentMessageMQ;
+    @Autowired
+    private VisualizationDao visualizationDao;
+    @Autowired
+    private VisualizationImgDao visualizationImgDao;
+
     public String upload( MultipartFile file) {
 
         String BASE_DIR = System.getProperty("user.dir");
@@ -77,5 +91,35 @@ public class VisualizationService {
         Session session = messageWebSocket.getSocket(userId);
         session.getBasicRemote().sendText("success:"+ JSON.toJSONString(res));
         return res;
+    }
+
+    public void save(VisualizationSaveVo visualizationSaveVo) {
+        sendExperimentMessageMQ.sendInsertVisualization(JSON.toJSONString(visualizationSaveVo));
+    }
+
+    public List<Visualization> selectByUserId(Integer userId) {
+        List<Visualization> list = visualizationDao.selectByUserId(userId);
+        return list;
+    }
+
+    public List<VisualizationImg> selectVisualizationImgs(Integer id) {
+        VisualizationImg visualizationImg = new VisualizationImg();
+        visualizationImg.setVisualizationId(id);
+        return visualizationImgDao.selectList(new QueryWrapper<>(visualizationImg));
+    }
+
+    public List<Visualization> selectAll() {
+        List<Visualization> list = visualizationDao.selectList(new QueryWrapper<>());
+        return list;
+    }
+
+    public List<Visualization> delete(Integer id) {
+        int i = visualizationDao.deleteById(id);
+        return visualizationDao.selectList(new QueryWrapper<>());
+    }
+
+    public List<Visualization> update(Visualization visualization) {
+        int i = visualizationDao.updateById(visualization);
+        return visualizationDao.selectList(new QueryWrapper<>());
     }
 }

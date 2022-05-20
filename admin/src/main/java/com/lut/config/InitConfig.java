@@ -40,6 +40,9 @@ public class InitConfig implements ApplicationRunner {
                 BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
                 bos.write(buff);
             }
+            file.setExecutable(true);
+            file.setReadable(true);
+            file.setWritable(true);
         }
     }
 }

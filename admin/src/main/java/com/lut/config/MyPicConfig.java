@@ -19,6 +19,8 @@ public class MyPicConfig implements WebMvcConfigurer {
         String FILE_DIR = BASE_DIR+SEPARATOR+"img"+SEPARATOR+"file";
         String RES_DIR = BASE_DIR+SEPARATOR+"img"+SEPARATOR+"res";
         String PANGENOME_DIR = BASE_DIR+SEPARATOR+"img"+SEPARATOR+"pangenome";
+        String CHROMOSOME_DIR=BASE_DIR+SEPARATOR+"img"+SEPARATOR+"chromosome";
+        ensureFileExists(CHROMOSOME_DIR);
         ensureFileExists(RES_DIR);
         ensureFileExists(DATA_DIR);
         ensureFileExists(INDEXING_DIR);
@@ -34,6 +36,8 @@ public class MyPicConfig implements WebMvcConfigurer {
                 .addResourceLocations("file:"+FILE_DIR+SEPARATOR);
         registry.addResourceHandler("/img/res/**")
                 .addResourceLocations("file:"+RES_DIR+SEPARATOR);
+        registry.addResourceHandler("/img/chromosome/**")
+                .addResourceLocations("file:"+CHROMOSOME_DIR+SEPARATOR);
     }
     public static void ensureFileExists(String dir){
          File file = new File(dir);

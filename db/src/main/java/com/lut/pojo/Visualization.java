@@ -6,15 +6,15 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-@TableName("admin")
 @Data
-public class Admin {
+@TableName("visualization")
+public class Visualization {
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
-    @TableField("username")
-    private String username;
-    @TableField("password")
-    private String password;
-    @TableField("phone")
-    private String phone;
+    @TableField("input_url")
+    private String inputUrl;
+    @TableField("name")
+    private String name;
+    @TableField("description")
+    private String description;
 }

@@ -48,8 +48,6 @@ public class MessageWebSocket {
      * */
     @OnOpen
     public void onOpen(Session session, @PathParam("userId") Integer userId) {
-//        System.out.println(session.getId());
-//        System.out.println(applicationContext);
         try {
             this.session = session;
             session.getBasicRemote().sendText(session.getId());
@@ -62,7 +60,6 @@ public class MessageWebSocket {
                 userSessionMap.put(userId, session);
             }
             sessionUserMap.put(sessionId, userId);
-            //建立sessionId和websocket引用的关系
             if(!websocketMap.containsKey(sessionId)){
                 websocketMap.put(sessionId, this);
                 addOnlineCount();           //在线数加1
@@ -72,8 +69,6 @@ public class MessageWebSocket {
             System.out.println(userSessionMap);
         }catch (Exception e){
             logger.error("连接失败");
-//            String es = ExceptionUtils.getFullStackTrace(e);
-//            logger.error(es);
             e.printStackTrace();
         }
     }
@@ -105,7 +100,7 @@ public class MessageWebSocket {
      **/
     @OnMessage
     public void onMessage(String messageStr, Session session, @PathParam("userId") Integer userId) throws IOException {
-   
+
     }
 
     /**

@@ -3,10 +3,27 @@ package com.lut.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
+
+    @Bean
+    // 初始化拦截器放入到ioc容器中
+    public RequestInterceptor getLoginInterceptor(){
+        return new RequestInterceptor();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry
+                // 1： 拦截器注册
+                .addInterceptor(getLoginInterceptor())
+                // 2: 给拦截器配置并且定义规则
+                .addPathPatterns("/**");
+    }
+
 
     @Bean
     public WebMvcConfigurer corsConfigurer()
